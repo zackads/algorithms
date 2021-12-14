@@ -1,39 +1,30 @@
 package io.zackads.github;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.Assert.assertArrayEquals;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class BubbleSortTest {
 
-    @Test
-    public void givenAnEmptyArray__ThenReturnEmptyArray() {
-        int[] input = new int[0];
-        int[] expectedOutput = new int[0];
-
-        int[] output = BubbleSort.sort(input);
-
-        assertArrayEquals(output, expectedOutput);
+    static Stream<Arguments> unsortedAndSortedArrayProvider() {
+        return Stream.of(
+                arguments(new int[0], new int[0]),
+                arguments(new int[]{0}, new int[]{0}),
+                arguments(new int[]{0, 1}, new int[]{0, 1}),
+                arguments(new int[]{1, 0}, new int[]{0, 1}),
+                arguments(new int[]{3, 2, 1}, new int[]{1, 2, 3})
+        );
     }
 
-    @Test
-    public void givenArrayOfOneElement__ThenReturnArray() {
-        int[] input = {0};
-        int[] expectedOutput = {0};
-
-        int[] output = BubbleSort.sort(input);
-
-        assertArrayEquals(output, expectedOutput);
+    @ParameterizedTest
+    @MethodSource("unsortedAndSortedArrayProvider")
+    public void givenAnEmptyArray__ThenReturnEmptyArray(int[] input, int[] expectedOutput) {
+        assertArrayEquals(BubbleSort.sort(input), expectedOutput);
     }
-
-    @Test
-    public void givenArrayOfTwoElementsOutOfOrder__ThenReturnArrayInOrder() {
-        int[] input = {1, 0};
-        int[] expectedOutput = {0, 1};
-
-        int[] output = BubbleSort.sort(input);
-
-        assertArrayEquals(output, expectedOutput);
-    }
-
 }

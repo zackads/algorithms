@@ -2,7 +2,6 @@ package io.zackads.github;
 
 public class BubbleSort {
     static int[] sort(int[] array) {
-
         boolean swapped = false;
         do {
             for (int i = 0; i < array.length - 1; i++) {
