@@ -1,12 +1,13 @@
 package io.zackads.github;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -22,6 +23,7 @@ public class BubbleSortTest {
         );
     }
 
+    @Timeout(value = 10, unit = MILLISECONDS)
     @ParameterizedTest
     @MethodSource("unsortedAndSortedArrayProvider")
     public void givenAnEmptyArray__ThenReturnEmptyArray(int[] input, int[] expectedOutput) {
