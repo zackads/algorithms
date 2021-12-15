@@ -26,7 +26,7 @@ public class BubbleSortTest {
     @Timeout(value = 10, unit = MILLISECONDS)
     @ParameterizedTest
     @MethodSource("unsortedAndSortedArrayProvider")
-    public void givenAnEmptyArray__ThenReturnEmptyArray(int[] input, int[] expectedOutput) {
-        assertArrayEquals(BubbleSort.sort(input), expectedOutput);
+    public void givenUnsortedArray__ThenReturnSortedArray(int[] input, int[] expectedOutput) {
+        assertArrayEquals(expectedOutput, BubbleSort.sort(input));
     }
 }
